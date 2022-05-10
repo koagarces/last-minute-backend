@@ -35,7 +35,7 @@ module.exports = {
         onUpdate: "CASCADE",
         references: {
           model: "users",
-          Key: "id",
+          key: "id",
         },
       },
       searching: {

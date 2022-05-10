@@ -8,9 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      description: {
-        type: Sequelize.STRING,
+      userId: {
         allowNull: false,
+        type: Sequelize.INTEGER,
+        field: "userId",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+        references: {
+          model: "users",
+          key: "id",
+        },
       },
       matchId: {
         allowNull: false,
@@ -20,21 +27,12 @@ module.exports = {
         onUpdate: "CASCADE",
         references: {
           model: "matches",
-          as: "chats",
-          Key: "id",
+          key: "id",
         },
       },
-      userId: {
+      description: {
+        type: Sequelize.STRING,
         allowNull: false,
-        type: Sequelize.INTEGER,
-        field: "userId",
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-        references: {
-          model: "users",
-          as: "matches",
-          Key: "id",
-        },
       },
       createdAt: {
         allowNull: false,

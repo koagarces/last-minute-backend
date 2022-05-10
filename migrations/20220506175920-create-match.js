@@ -16,20 +16,19 @@ module.exports = {
         onUpdate: "CASCADE",
         references: {
           model: "users",
-          as: "matches",
-          Key: "id",
+          as: "connections",
+          key: "id",
         },
       },
-      messageId: {
+      eventId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        field: "matchId",
+        field: "eventId",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
         references: {
-          model: "messages",
-          as: "people",
-          Key: "id",
+          model: "events",
+          key: "id",
         },
       },
       createdAt: {
