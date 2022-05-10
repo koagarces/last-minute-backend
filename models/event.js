@@ -10,11 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Event.belongsTo(models.User, {
         foreignKey: "userId",
-      }),
-        Event.hasMany(models.Match, {
-          foreignKey: "userId",
-          as: "people",
-        });
+      });
+      Event.hasMany(models.Match, {
+        foreignKey: "eventId",
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      });
     }
   }
   Event.init(
@@ -43,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
         references: {
           model: "users",
+          as: "users",
           Key: "id",
         },
       },

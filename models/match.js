@@ -8,15 +8,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Message.belongsTo(models.User, {
+      Match.belongsTo(models.User, {
         foreignKey: "userId",
       }),
-        Message.belongsTo(models.Event, {
+        Match.belongsTo(models.Event, {
           foreignKey: "eventId",
         }),
-        Message.hasMany(models.Message, {
-          foreignKey: "messageId",
-          as: "chats",
+        Match.hasMany(models.Message, {
+          foreignKey: "matchId",
+          onDelete: "cascade",
+          onUpdate: "cascade",
         });
     }
   }
@@ -30,30 +31,17 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
         references: {
           model: "users",
-          as: "matches",
-          Key: "id",
-        },
-      },
-      messageId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        field: "matchId",
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-        references: {
-          model: "messages",
-          as: "people",
           Key: "id",
         },
       },
       eventId: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        field: "userId",
+        field: "eventId",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
         references: {
-          model: "events",
+          model: "users",
           Key: "id",
         },
       },

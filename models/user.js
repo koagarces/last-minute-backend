@@ -19,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: "userId",
           onDelete: "cascade",
           onUpdate: "cascade",
+        }),
+        User.hasMany(models.Message, {
+          as: "messages",
+          foreignKey: "userId",
+          onDelete: "cascade",
+          onUpdate: "cascade",
         });
-      // User.hasMany(models.Message, {
-      //   as: "messages",
-      //   foreignKey: "userId",
-      //   onDelete: "cascade",
-      //   onUpdate: "cascade",
-      // });
     }
   }
   User.init(
@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      password: {
+      passwordDigest: {
         type: DataTypes.STRING,
         allowNull: false,
       },

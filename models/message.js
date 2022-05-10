@@ -18,9 +18,17 @@ module.exports = (sequelize, DataTypes) => {
   }
   Message.init(
     {
-      description: {
-        type: DataTypes.STRING,
+      userId: {
         allowNull: false,
+        type: DataTypes.INTEGER,
+        field: "userId",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+        references: {
+          model: "users",
+          as: "texts",
+          Key: "id",
+        },
       },
       matchId: {
         allowNull: false,
@@ -30,21 +38,13 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
         references: {
           model: "matches",
-          as: "chats",
+          as: "texts",
           Key: "id",
         },
       },
-      userId: {
+      description: {
+        type: DataTypes.STRING,
         allowNull: false,
-        type: DataTypes.INTEGER,
-        field: "userId",
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-        references: {
-          model: "users",
-          as: "matches",
-          Key: "id",
-        },
       },
     },
     {
