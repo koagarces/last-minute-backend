@@ -2,8 +2,17 @@ const { Event, User } = require("../models");
 
 const getEventById = async (req, res) => {
   try {
-    const event = await Event.findByPk(req.params.eventId);
+    const event = await Event.findByPk(req.params.id);
     res.send(event);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getAllEvents = async (req, res) => {
+  try {
+    const events = await Event.findAll();
+    res.send(events);
   } catch (error) {
     throw error;
   }
@@ -26,18 +35,18 @@ const createEvent = async (req, res) => {
 
 const DeleteEvent = async (req, res) => {
   try {
-    let eventId = parseInt(req.params.eventId);
-    await Event.destroy({ where: { id: eventId } });
-    res.send({ message: `Event with id ${eventId} has been deleted` });
+    let id = parseInt(req.params.id);
+    await Event.destroy({ where: { id: id } });
+    res.send({ message: `Event with id ${id} has been deleted` });
   } catch (error) {
     throw error;
   }
 };
 const UpdateEvent = async (req, res) => {
   try {
-    let EventId = parseInt(req.params.eventId);
+    let id = parseInt(req.params.id);
     let updatedEvent = await Event.update(req.body, {
-      where: { id: EventId },
+      where: { id: id },
       returning: true,
     });
     res.send(updatedEvent);
@@ -48,6 +57,7 @@ const UpdateEvent = async (req, res) => {
 
 module.exports = {
   getEventById,
+  getAllEvents,
   createEvent,
   DeleteEvent,
   UpdateEvent,

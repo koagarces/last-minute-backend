@@ -73,7 +73,7 @@ const GetProfiles = async (req, res) => {
 
 const GetUserProfile = async (req, res) => {
   try {
-    const userAndevents = await User.findByPk(req.params.user_id, {
+    const userAndevents = await User.findByPk(req.params.id, {
       include: [{ model: event, as: "events" }],
     });
     res.send(userAndevents);

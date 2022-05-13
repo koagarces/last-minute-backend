@@ -6,7 +6,7 @@ Router.post("/login", controller.Login);
 Router.post("/register", controller.Register);
 
 Router.get(
-  "/session/:user_id",
+  "/session/:id",
   middleware.stripToken,
   middleware.verifyToken,
   controller.GetUserProfile
