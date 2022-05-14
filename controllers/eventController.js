@@ -18,6 +18,16 @@ const getAllEvents = async (req, res) => {
   }
 };
 
+const getAllEventsByUserId = async (req, res) => {
+  try {
+    let userId = parseInt(req.params.userId);
+    const events = await Event.findAll({ where: { userId: userId } });
+    res.send(events);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const createEvent = async (req, res) => {
   console.log(req.body);
   try {
@@ -58,6 +68,7 @@ const UpdateEvent = async (req, res) => {
 module.exports = {
   getEventById,
   getAllEvents,
+  getAllEventsByUserId,
   createEvent,
   DeleteEvent,
   UpdateEvent,
