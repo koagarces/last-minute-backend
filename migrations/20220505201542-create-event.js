@@ -40,7 +40,6 @@ module.exports = {
       },
       searching: {
         type: Sequelize.BOOLEAN,
-        allowNull: false,
       },
       createdAt: {
         allowNull: false,

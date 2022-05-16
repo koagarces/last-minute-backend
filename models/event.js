@@ -50,7 +50,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       searching: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
       },
     },
     {

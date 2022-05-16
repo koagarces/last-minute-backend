@@ -1,6 +1,6 @@
 const { Event, User, Match } = require("../models");
 
-const getMatchesByeventId = async (req, res) => {
+const getMatchesByEventId = async (req, res) => {
   try {
     let event_Id = parseInt(req.params.eventId);
     const match = await Match.findAll({
@@ -55,7 +55,7 @@ const DeleteMatch = async (req, res) => {
 };
 
 module.exports = {
-  getMatchesByeventId,
+  getMatchesByEventId,
   getMatchesByUserId,
   createMatch,
   DeleteMatch,
