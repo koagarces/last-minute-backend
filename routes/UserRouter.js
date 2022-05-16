@@ -11,6 +11,7 @@ Router.get(
   middleware.verifyToken,
   controller.GetUserProfile
 );
+Router.get("/all", controller.GetProfiles);
 
 Router.get(
   "/session",
